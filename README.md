@@ -17,6 +17,19 @@ Details of IEEE754 can be found on [Wikipedia](https://en.wikipedia.org/wiki/IEE
 7. [The result of `min(x, NaN)` or `max(x, NaN)` may vary depending on the IEEE754 revision.](https://en.wikipedia.org/wiki/IEEE_754-2008_revision#Min_and_max)
 8. [There are quiet and signaling NaNs.  For our langagues, quiet NaNs are used.](https://en.wikipedia.org/wiki/IEEE_754#NaNs)
 
+### Why are NaN values not equal in IEEE754?
+
+> **NOTE:** AI summary.
+
+NaN (Not a Number) values are not equal to themselves or any other value in IEEE 754 floating-point arithmetic for 
+several important reasons:
+
+1. Representation of undefined operations: NaN is used to represent the result of undefined mathematical operations like 0/0 or sqrt(-1). Since these operations don't have a well-defined numerical result, it wouldn't make sense for NaNs resulting from different undefined operations to be considered equal.
+2. Propagation of errors: The inequality of NaN to itself allows errors to propagate through calculations. If a NaN is produced at any step, comparing it to other values (including itself) will always return false, helping to identify and track error conditions.
+3. Multiple NaN representations: There are actually many different bit patterns that can represent NaN in IEEE 754. While they all indicate an invalid or undefined result, they can carry different information about the specific operation that produced them.
+4. Consistency with other comparisons: Since NaN is considered unordered with respect to all other floating-point values (including itself), having NaN == NaN be false maintains consistency with other comparison operations involving NaN.
+5. Special handling in algorithms: The behavior of NaN in comparisons allows for special handling in sorting and other algorithms. For example, it ensures that NaNs are treated as distinct values for sorting, uniquing, and hashing purposes.
+
 ## Java
 
 > :warning: **WARNING:** Java does not support IEE754 `-NaN`.  All NaNs are treated as positive.
