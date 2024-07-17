@@ -166,7 +166,7 @@ several important reasons:
 > while `isequal` is used for bitwise equality.
 
 | Julia | v1 | v2 | == | != | > | >= | < | <= | hash== | isequal | === |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Julia | -0.0 | -0.0 | true | false | false | true | false | true | true | true | true |
 | Julia | -0.0 | 0.0 | true | false | false | true | false | true | false | false | false |
 | Julia | -0.0 | NaN | false | true | false | false | false | false | false | false | false |

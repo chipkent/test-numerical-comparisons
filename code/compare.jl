@@ -4,7 +4,7 @@ lang = "Julia"
 
 # Print the table header
 println("| ", join([lang, "v1", "v2", operations...], " | "), " |")
-println("| ", join(fill("---", 10), " | "), " |")
+println("| ", join(fill("---", 12), " | "), " |")
 
 # Iterate over each pair of values
 for v1 in values
