@@ -64,44 +64,51 @@ several important reasons:
 
 > :warning: **WARNING:** Java does not support IEE754 `-NaN`.  All NaNs are treated as positive.
 
-| lang | v1 | v2 | == | != | > | >= | < | <= | hashCode== | 
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Java | -0.00 | -0.00 | True | False | False | True | False | True | True | 
-| Java | -0.00 | 0.00 | True | False | False | True | False | True | False | 
-| Java | -0.00 | NaN | False | True | False | False | False | False | False | 
-| Java | -0.00 | NaN | False | True | False | False | False | False | False | 
-| Java | -0.00 | Infinity | False | True | False | False | True | True | False | 
-| Java | -0.00 | -Infinity | False | True | True | True | False | False | False | 
-| Java | 0.00 | -0.00 | True | False | False | True | False | True | False | 
-| Java | 0.00 | 0.00 | True | False | False | True | False | True | True | 
-| Java | 0.00 | NaN | False | True | False | False | False | False | False | 
-| Java | 0.00 | NaN | False | True | False | False | False | False | False | 
-| Java | 0.00 | Infinity | False | True | False | False | True | True | False | 
-| Java | 0.00 | -Infinity | False | True | True | True | False | False | False | 
-| Java | NaN | -0.00 | False | True | False | False | False | False | False | 
-| Java | NaN | 0.00 | False | True | False | False | False | False | False | 
-| Java | NaN | NaN | False | True | False | False | False | False | True | 
-| Java | NaN | NaN | False | True | False | False | False | False | True | 
-| Java | NaN | Infinity | False | True | False | False | False | False | False | 
-| Java | NaN | -Infinity | False | True | False | False | False | False | False | 
-| Java | NaN | -0.00 | False | True | False | False | False | False | False | 
-| Java | NaN | 0.00 | False | True | False | False | False | False | False | 
-| Java | NaN | NaN | False | True | False | False | False | False | True | 
-| Java | NaN | NaN | False | True | False | False | False | False | True | 
-| Java | NaN | Infinity | False | True | False | False | False | False | False | 
-| Java | NaN | -Infinity | False | True | False | False | False | False | False | 
-| Java | Infinity | -0.00 | False | True | True | True | False | False | False | 
-| Java | Infinity | 0.00 | False | True | True | True | False | False | False | 
-| Java | Infinity | NaN | False | True | False | False | False | False | False | 
-| Java | Infinity | NaN | False | True | False | False | False | False | False | 
-| Java | Infinity | Infinity | True | False | False | True | False | True | True | 
-| Java | Infinity | -Infinity | False | True | True | True | False | False | False | 
-| Java | -Infinity | -0.00 | False | True | False | False | True | True | False | 
-| Java | -Infinity | 0.00 | False | True | False | False | True | True | False | 
-| Java | -Infinity | NaN | False | True | False | False | False | False | False | 
-| Java | -Infinity | NaN | False | True | False | False | False | False | False | 
-| Java | -Infinity | Infinity | False | True | False | False | True | True | False | 
-| Java | -Infinity | -Infinity | True | False | False | True | False | True | True | 
+> **NOTE:** `equals` is using [`Double.equals`](https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html#equals-java.lang.Object-).
+
+:warning: **WARNING:** **[`Double.equals`](https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html#equals-java.lang.Object-) does not test for value equality**.  If `d1` and `d2` both represent `Double.NaN`, then the `equals` method returns true, even though `Double.NaN==Double.NaN` has the value false. If `d1` represents `+0.0` while `d2` represents `-0.0`, or vice versa, the `equal` test has the value false, even though `+0.0==-0.0` has the value true.  This method is used by [`Arryas.equals`](https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#equals-double:A-double:A-).
+
+:warning: **WARNING:** **[`Double.compareTo`](https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html#compareTo-java.lang.Double-) does not produce a stable sort for `0.0` and `-0.0`.**  `Double.NaN` is considered by this method to be equal to itself and greater than all other double values (including `Double.POSITIVE_INFINITY`). `0.0d` is considered by this method to be greater than `-0.0d`.  This method is used by [`Arrays.sort`](https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#sort-double:A-).
+
+
+| lang | v1 | v2 | == | != | > | >= | < | <= | hashCode== | equals | 
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Java | -0.00 | -0.00 | True | False | False | True | False | True | True | True | 
+| Java | -0.00 | 0.00 | True | False | False | True | False | True | False | False | 
+| Java | -0.00 | NaN | False | True | False | False | False | False | False | False | 
+| Java | -0.00 | NaN | False | True | False | False | False | False | False | False | 
+| Java | -0.00 | Infinity | False | True | False | False | True | True | False | False | 
+| Java | -0.00 | -Infinity | False | True | True | True | False | False | False | False | 
+| Java | 0.00 | -0.00 | True | False | False | True | False | True | False | False | 
+| Java | 0.00 | 0.00 | True | False | False | True | False | True | True | True | 
+| Java | 0.00 | NaN | False | True | False | False | False | False | False | False | 
+| Java | 0.00 | NaN | False | True | False | False | False | False | False | False | 
+| Java | 0.00 | Infinity | False | True | False | False | True | True | False | False | 
+| Java | 0.00 | -Infinity | False | True | True | True | False | False | False | False | 
+| Java | NaN | -0.00 | False | True | False | False | False | False | False | False | 
+| Java | NaN | 0.00 | False | True | False | False | False | False | False | False | 
+| Java | NaN | NaN | False | True | False | False | False | False | True | True | 
+| Java | NaN | NaN | False | True | False | False | False | False | True | True | 
+| Java | NaN | Infinity | False | True | False | False | False | False | False | False | 
+| Java | NaN | -Infinity | False | True | False | False | False | False | False | False | 
+| Java | NaN | -0.00 | False | True | False | False | False | False | False | False | 
+| Java | NaN | 0.00 | False | True | False | False | False | False | False | False | 
+| Java | NaN | NaN | False | True | False | False | False | False | True | True | 
+| Java | NaN | NaN | False | True | False | False | False | False | True | True | 
+| Java | NaN | Infinity | False | True | False | False | False | False | False | False | 
+| Java | NaN | -Infinity | False | True | False | False | False | False | False | False | 
+| Java | Infinity | -0.00 | False | True | True | True | False | False | False | False | 
+| Java | Infinity | 0.00 | False | True | True | True | False | False | False | False | 
+| Java | Infinity | NaN | False | True | False | False | False | False | False | False | 
+| Java | Infinity | NaN | False | True | False | False | False | False | False | False | 
+| Java | Infinity | Infinity | True | False | False | True | False | True | True | True | 
+| Java | Infinity | -Infinity | False | True | True | True | False | False | False | False | 
+| Java | -Infinity | -0.00 | False | True | False | False | True | True | False | False | 
+| Java | -Infinity | 0.00 | False | True | False | False | True | True | False | False | 
+| Java | -Infinity | NaN | False | True | False | False | False | False | False | False | 
+| Java | -Infinity | NaN | False | True | False | False | False | False | False | False | 
+| Java | -Infinity | Infinity | False | True | False | False | True | True | False | False | 
+| Java | -Infinity | -Infinity | True | False | False | True | False | True | True | True |
 
 ## Python
 

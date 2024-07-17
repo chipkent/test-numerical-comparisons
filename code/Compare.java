@@ -16,6 +16,8 @@ public class Compare {
                 return v1 <= v2;
             case "hashCode==":
                 return Double.hashCode(v1) == Double.hashCode(v2);
+            case "equals":
+                return Double.valueOf(v1).equals(Double.valueOf(v2));
             default:
                 throw new IllegalArgumentException("Invalid operation: " + op);
         }
@@ -28,7 +30,7 @@ public class Compare {
 
     public static void main(String[] args) {
         double[] values = { -0.0, 0.0, Double.NaN, -Double.NaN, Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY };
-        String[] operations = { "==", "!=", ">", ">=", "<", "<=", "hashCode==" };
+        String[] operations = { "==", "!=", ">", ">=", "<", "<=", "hashCode==", "equals" };
 
         // Create the table header
         System.out.print(fmt("lang") + "," + fmt("v1") + "," + fmt("v2"));
