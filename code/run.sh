@@ -6,3 +6,4 @@ R -e "install.packages('digest', repos='http://cran.rstudio.com/')"
 java Compare.java
 python3.12 ./compare.py
 Rscript ./compare.R
+julia ./compare.jl

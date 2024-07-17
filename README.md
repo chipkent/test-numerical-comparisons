@@ -146,6 +146,51 @@ Details of IEEE754 can be found on [Wikipedia](https://en.wikipedia.org/wiki/IEE
 | R | -Inf | Inf | FALSE | TRUE | FALSE | FALSE | TRUE | TRUE | FALSE | 
 | R | -Inf | -Inf | TRUE | FALSE | FALSE | TRUE | FALSE | TRUE | TRUE | 
 
+## Julia
+
+> **NOTE:** Julia has `==` and `isequal` to compare floating point numbers.
+> `==` is used for mathematical equality, while `isequal` is used for bitwise equality.
+
+| Julia | v1 | v2 | == | != | > | >= | < | <= | hash== | isequal |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Julia | -0.0 | -0.0 | true | false | false | true | false | true | true | true |
+| Julia | -0.0 | 0.0 | true | false | false | true | false | true | false | false |
+| Julia | -0.0 | NaN | false | true | false | false | false | false | false | false |
+| Julia | -0.0 | -NaN | false | true | false | false | false | false | false | false |
+| Julia | -0.0 | Inf | false | true | false | false | true | true | false | false |
+| Julia | -0.0 | -Inf | false | true | true | true | false | false | false | false |
+| Julia | 0.0 | -0.0 | true | false | false | true | false | true | false | false |
+| Julia | 0.0 | 0.0 | true | false | false | true | false | true | true | true |
+| Julia | 0.0 | NaN | false | true | false | false | false | false | false | false |
+| Julia | 0.0 | -NaN | false | true | false | false | false | false | false | false |
+| Julia | 0.0 | Inf | false | true | false | false | true | true | false | false |
+| Julia | 0.0 | -Inf | false | true | true | true | false | false | false | false |
+| Julia | NaN | -0.0 | false | true | false | false | false | false | false | false |
+| Julia | NaN | 0.0 | false | true | false | false | false | false | false | false |
+| Julia | NaN | NaN | false | true | false | false | false | false | true | true |
+| Julia | NaN | -NaN | false | true | false | false | false | false | false | false |
+| Julia | NaN | Inf | false | true | false | false | false | false | false | false |
+| Julia | NaN | -Inf | false | true | false | false | false | false | false | false |
+| Julia | -NaN | -0.0 | false | true | false | false | false | false | false | false |
+| Julia | -NaN | 0.0 | false | true | false | false | false | false | false | false |
+| Julia | -NaN | NaN | false | true | false | false | false | false | false | false |
+| Julia | -NaN | -NaN | false | true | false | false | false | false | true | true |
+| Julia | -NaN | Inf | false | true | false | false | false | false | false | false |
+| Julia | -NaN | -Inf | false | true | false | false | false | false | false | false |
+| Julia | Inf | -0.0 | false | true | true | true | false | false | false | false |
+| Julia | Inf | 0.0 | false | true | true | true | false | false | false | false |
+| Julia | Inf | NaN | false | true | false | false | false | false | false | false |
+| Julia | Inf | -NaN | false | true | false | false | false | false | false | false |
+| Julia | Inf | Inf | true | false | false | true | false | true | true | true |
+| Julia | Inf | -Inf | false | true | true | true | false | false | false | false |
+| Julia | -Inf | -0.0 | false | true | false | false | true | true | false | false |
+| Julia | -Inf | 0.0 | false | true | false | false | true | true | false | false |
+| Julia | -Inf | NaN | false | true | false | false | false | false | false | false |
+| Julia | -Inf | -NaN | false | true | false | false | false | false | false | false |
+| Julia | -Inf | Inf | false | true | false | false | true | true | false | false |
+| Julia | -Inf | -Inf | true | false | false | true | false | true | true | true |
+
+
 ## Deephaven
 
 > :warning: **WARNING:** The Deephaven UI seems to be strange with how it displays zeros.  Both plus and 
