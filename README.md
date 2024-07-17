@@ -1,8 +1,8 @@
 # test-numerical-comparisons
 
-A look at numerical comparisons in different languages so that they can be compared against IEEE754.
+A look at numerical comparisons in different languages to determine how a quant analytics platform should behave.
 In specific, this repo is looking at equality, ordering, and hashing of unusual floating point numbers
-in different languages used for numerical computing.
+in different programming languages used for numerical computing.
 
 ## IEEE754
 
@@ -24,11 +24,11 @@ Details of IEEE754 can be found on [Wikipedia](https://en.wikipedia.org/wiki/IEE
 NaN (Not a Number) values are not equal to themselves or any other value in IEEE 754 floating-point arithmetic for 
 several important reasons:
 
-1. Representation of undefined operations: NaN is used to represent the result of undefined mathematical operations like 0/0 or sqrt(-1). Since these operations don't have a well-defined numerical result, it wouldn't make sense for NaNs resulting from different undefined operations to be considered equal.
-2. Propagation of errors: The inequality of NaN to itself allows errors to propagate through calculations. If a NaN is produced at any step, comparing it to other values (including itself) will always return false, helping to identify and track error conditions.
-3. Multiple NaN representations: There are actually many different bit patterns that can represent NaN in IEEE 754. While they all indicate an invalid or undefined result, they can carry different information about the specific operation that produced them.
-4. Consistency with other comparisons: Since NaN is considered unordered with respect to all other floating-point values (including itself), having NaN == NaN be false maintains consistency with other comparison operations involving NaN.
-5. Special handling in algorithms: The behavior of NaN in comparisons allows for special handling in sorting and other algorithms. For example, it ensures that NaNs are treated as distinct values for sorting, uniquing, and hashing purposes.
+1. **Representation of undefined operations:** NaN is used to represent the result of undefined mathematical operations like 0/0 or sqrt(-1). Since these operations don't have a well-defined numerical result, it wouldn't make sense for NaNs resulting from different undefined operations to be considered equal.
+2. **Propagation of errors:** The inequality of NaN to itself allows errors to propagate through calculations. If a NaN is produced at any step, comparing it to other values (including itself) will always return false, helping to identify and track error conditions.
+3. **Multiple NaN representations:** There are actually many different bit patterns that can represent NaN in IEEE 754. While they all indicate an invalid or undefined result, they can carry different information about the specific operation that produced them.
+4. **Consistency with other comparisons:** Since NaN is considered unordered with respect to all other floating-point values (including itself), having NaN == NaN be false maintains consistency with other comparison operations involving NaN.
+5. **Special handling in algorithms:** The behavior of NaN in comparisons allows for special handling in sorting and other algorithms. For example, it ensures that NaNs are treated as distinct values for sorting, uniquing, and hashing purposes.
 
 ## Java
 
