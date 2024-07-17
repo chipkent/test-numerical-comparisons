@@ -1,11 +1,13 @@
 # test-numerical-comparisons
-Look at numerical comparisons in different languages so that they can be compared against IEEE754.
+
+A look at numerical comparisons in different languages so that they can be compared against IEEE754.
+In specific, this repo is looking at equality, ordering, and hashing of unusual floating point numbers
+in different languages used for numerical computing.
 
 ## IEEE754
 
-Details of IEEE754 can be found at [IEEE754](https://en.wikipedia.org/wiki/IEEE_754).
+Details of IEEE754 can be found on [Wikipedia](https://en.wikipedia.org/wiki/IEEE_754).
 
-Notes:
 1. [NaN comparisons are unordered](https://en.wikipedia.org/wiki/IEEE_754#Comparison_predicates)
 2. [`-0.0` and `0.0` are equal](https://en.wikipedia.org/wiki/IEEE_754#Comparison_predicates)
 3. [`-0.0` is less than `0.0`](https://en.wikipedia.org/wiki/IEEE_754#Total-ordering_predicate)
@@ -99,7 +101,52 @@ Notes:
 | Python | -math.inf | math.inf | False | True | False | False | True | True | False |
 | Python | -math.inf | -math.inf | True | False | False | True | False | True | True |
 
-# Deephaven
+## R
+
+> **NOTE:** `digest::digest` was used to calculate the hash code for R.
+
+> :warning: **WARNING:** When NaN is involved in an R comparison, the result is `NA`, the R equivalent of `null`.
+
+| lang | v1 | v2 | == | != | > | >= | < | <= | hashCode== | 
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | 
+| R | -0.0 | -0.0 | TRUE | FALSE | FALSE | TRUE | FALSE | TRUE | TRUE | 
+| R | -0.0 | 0.0 | TRUE | FALSE | FALSE | TRUE | FALSE | TRUE | FALSE | 
+| R | -0.0 | NaN | NA | NA | NA | NA | NA | NA | FALSE | 
+| R | -0.0 | -NaN | NA | NA | NA | NA | NA | NA | FALSE | 
+| R | -0.0 | Inf | FALSE | TRUE | FALSE | FALSE | TRUE | TRUE | FALSE | 
+| R | -0.0 | -Inf | FALSE | TRUE | TRUE | TRUE | FALSE | FALSE | FALSE | 
+| R | 0.0 | -0.0 | TRUE | FALSE | FALSE | TRUE | FALSE | TRUE | FALSE | 
+| R | 0.0 | 0.0 | TRUE | FALSE | FALSE | TRUE | FALSE | TRUE | TRUE | 
+| R | 0.0 | NaN | NA | NA | NA | NA | NA | NA | FALSE | 
+| R | 0.0 | -NaN | NA | NA | NA | NA | NA | NA | FALSE | 
+| R | 0.0 | Inf | FALSE | TRUE | FALSE | FALSE | TRUE | TRUE | FALSE | 
+| R | 0.0 | -Inf | FALSE | TRUE | TRUE | TRUE | FALSE | FALSE | FALSE | 
+| R | NaN | -0.0 | NA | NA | NA | NA | NA | NA | FALSE | 
+| R | NaN | 0.0 | NA | NA | NA | NA | NA | NA | FALSE | 
+| R | NaN | NaN | NA | NA | NA | NA | NA | NA | TRUE | 
+| R | NaN | -NaN | NA | NA | NA | NA | NA | NA | FALSE | 
+| R | NaN | Inf | NA | NA | NA | NA | NA | NA | FALSE | 
+| R | NaN | -Inf | NA | NA | NA | NA | NA | NA | FALSE | 
+| R | -NaN | -0.0 | NA | NA | NA | NA | NA | NA | FALSE | 
+| R | -NaN | 0.0 | NA | NA | NA | NA | NA | NA | FALSE | 
+| R | -NaN | NaN | NA | NA | NA | NA | NA | NA | FALSE | 
+| R | -NaN | -NaN | NA | NA | NA | NA | NA | NA | TRUE | 
+| R | -NaN | Inf | NA | NA | NA | NA | NA | NA | FALSE | 
+| R | -NaN | -Inf | NA | NA | NA | NA | NA | NA | FALSE | 
+| R | Inf | -0.0 | FALSE | TRUE | TRUE | TRUE | FALSE | FALSE | FALSE | 
+| R | Inf | 0.0 | FALSE | TRUE | TRUE | TRUE | FALSE | FALSE | FALSE | 
+| R | Inf | NaN | NA | NA | NA | NA | NA | NA | FALSE | 
+| R | Inf | -NaN | NA | NA | NA | NA | NA | NA | FALSE | 
+| R | Inf | Inf | TRUE | FALSE | FALSE | TRUE | FALSE | TRUE | TRUE | 
+| R | Inf | -Inf | FALSE | TRUE | TRUE | TRUE | FALSE | FALSE | FALSE | 
+| R | -Inf | -0.0 | FALSE | TRUE | FALSE | FALSE | TRUE | TRUE | FALSE | 
+| R | -Inf | 0.0 | FALSE | TRUE | FALSE | FALSE | TRUE | TRUE | FALSE | 
+| R | -Inf | NaN | NA | NA | NA | NA | NA | NA | FALSE | 
+| R | -Inf | -NaN | NA | NA | NA | NA | NA | NA | FALSE | 
+| R | -Inf | Inf | FALSE | TRUE | FALSE | FALSE | TRUE | TRUE | FALSE | 
+| R | -Inf | -Inf | TRUE | FALSE | FALSE | TRUE | FALSE | TRUE | TRUE | 
+
+## Deephaven
 
 > :warning: **WARNING:** The Deephaven UI seems to be strange with how it displays zeros.  Both plus and 
 > minus zero are represented as `-0.0`.  Note the comparison results in this screenshot.
@@ -144,7 +191,7 @@ Notes:
 | -inf |  inf | False | True  | False | False | True  | True  | False |
 | -inf | -inf | True  | False | False | True  | False | True  | True  |
 
-# KDB
+## KDB
 
 > **NOTE:** KDB was not tested.  Information was obtained via AI search.
 
