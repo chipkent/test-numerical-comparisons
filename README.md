@@ -1,6 +1,19 @@
 # test-numerical-comparisons
 Look at numerical comparisons in different languages so that they can be compared against IEEE754.
 
+## IEEE754
+
+Details of IEEE754 can be found at [IEEE754](https://en.wikipedia.org/wiki/IEEE_754).
+
+Notes:
+1. [NaN comparisons are unordered](https://en.wikipedia.org/wiki/IEEE_754#Comparison_predicates)
+2. [`-0.0` and `0.0` are equal](https://en.wikipedia.org/wiki/IEEE_754#Comparison_predicates)
+3. [`-0.0` is less than `0.0`](https://en.wikipedia.org/wiki/IEEE_754#Total-ordering_predicate)
+4. [`-NaN < -Inf` and `+Inf < +NaN`](https://en.wikipedia.org/wiki/IEEE_754#Total-ordering_predicate)
+5. [`min(+0.0, -0.0) = min(-0.0, +0.0) = -0.0 or 0.0`](https://en.wikipedia.org/wiki/IEEE_754-2008_revision#Min_and_max)
+6. [`max(+0.0, -0.0) = max(-0.0, +0.0) = +0.0 or 0.0`](https://en.wikipedia.org/wiki/IEEE_754-2008_revision#Min_and_max)
+7. [The result of `min(x, NaN)` or `max(x, NaN)` may vary depending on the IEEE754 revision.](https://en.wikipedia.org/wiki/IEEE_754-2008_revision#Min_and_max)
+8. [There are quiet and signaling NaNs.  For our langagues, quiet NaNs are used.](https://en.wikipedia.org/wiki/IEEE_754#NaNs)
 
 ## Java
 
