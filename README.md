@@ -2,9 +2,9 @@
 Look at numerical comparisons in different languages so that they can be compared against IEEE754.
 
 
-
-
 ## Java
+
+> :warning: **WARNING:** Java does not support IEE754 `-NaN`.
 
 | lang | v1 | v2 | == | != | > | >= | < | <= | hashCode== | 
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
