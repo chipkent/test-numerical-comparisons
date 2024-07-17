@@ -1,5 +1,5 @@
 values = ["-0.0", "0.0", "NaN", "-NaN", "Inf", "-Inf"]
-operations = ["==", "!=", ">", ">=", "<", "<=", "hash==", "isequal"]
+operations = ["==", "!=", ">", ">=", "<", "<=", "hash==", "isequal", "==="]
 lang = "Julia"
 
 # Print the table header
