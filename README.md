@@ -32,7 +32,6 @@ Things to consider:
 1. For uniquing, mathematical users would expect NaNs to be treated as equal to themselves and not appear multiple times in the unique set.
 1. For filtering, mathematical users would expect NaNs to be treated as equal to themselves so that matching values are returned.
 1. IEEE754 specifies `+NaN` and `-NaN`.  Java does not support `-NaN`, and all NaNs are treated as positive.
-6. 
 
 ## IEEE754
 
