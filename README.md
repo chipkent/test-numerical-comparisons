@@ -4,6 +4,36 @@ A look at numerical comparisons in different languages to determine how a quant 
 In specific, this repo is looking at equality, ordering, and hashing of unusual floating point numbers
 in different programming languages used for numerical computing.
 
+## TL;DR
+
+1. Types of equality:
+    1. **Value equality:** Compare the mathematical value of two numbers.
+    2. **Object identity:** Compare the object identity of two numbers.
+    3. **Bitwise equality:** Compare the bitwise representation of two numbers.
+2. Contexts to consider:
+    1. **Equality:** `==`, `!=`, `isequal`, `===`
+    2. **Ordering:** `<`, `<=`, `>`, `>=` 
+    3. **Sorting:** `sort`
+    4. **Hashing:** `hashCode`
+    5. **Uniquing:** `unique`
+    6. **Filtering:** `where`
+    7. **UI:** How the UI displays the numbers. 
+
+Things to consider:
+1. Mathematical users expect value equality.  e.g. `-0.0` and `0.0` are equal.
+1. For stable sorts, value and bitwise equality produce different sort orders.  Math users probably expect value equality.
+1. For grouping and hashing, math users expect value equality.  They would be very surprised if `-0.0` and `0.0` were treated as different key values.
+1. For uniquing, math users expect value equality.  They would be very surprised if both `-0.0` and `0.0` were in the unique set.
+1. For filtering, math users expect value equality.  They would be very surprised if `X == 0.0` did not return `-0.0` values.
+1. A UI, should display either display (1) both `-0.0` and `0.0` or (2) only `0.0`.  It should not display them both as `-0.0`.
+1. The value of NaN is indeterminate.  For example, is `sqrt(-1) > 0/0`?  As a result, NaN vs NaN comparisons are unordered (e.g. `NaN == NaN` is false, `NaN > NaN` is false).
+1. For stable sorts, if NaNs are not treated as equal to themselves, the sort order will be unstable.
+1. For grouping and hashing, mathematical users would expect NaNs to be treated as equal to themselves so that they can be used as a key when grouping.
+1. For uniquing, mathematical users would expect NaNs to be treated as equal to themselves and not appear multiple times in the unique set.
+1. For filtering, mathematical users would expect NaNs to be treated as equal to themselves so that matching values are returned.
+1. IEEE754 specifies `+NaN` and `-NaN`.  Java does not support `-NaN`, and all NaNs are treated as positive.
+6. 
+
 ## IEEE754
 
 Details of IEEE754 can be found on [Wikipedia](https://en.wikipedia.org/wiki/IEEE_754).
