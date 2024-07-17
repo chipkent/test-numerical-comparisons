@@ -152,6 +152,9 @@ Details of IEEE754 can be found on [Wikipedia](https://en.wikipedia.org/wiki/IEE
 > minus zero are represented as `-0.0`.  Note the comparison results in this screenshot.
 > ![Deephaven](assets/deephaven_ui_zeros.png)
 
+> **NOTE:** Deephaven sort order appears to treat `-0.0` and `0.0` as equal.
+> ![Deephaven](assets/deephaven_sort_order.png)
+
 |   v1 |   v2 | Eq    | Ne    | Gt    | Ge    | Lt    | Le    | Hc    |
 |-----:|-----:|:------|:------|:------|:------|:------|:------|:------|
 |   -0 |   -0 | True  | False | False | True  | False | True  | True  |
@@ -194,6 +197,8 @@ Details of IEEE754 can be found on [Wikipedia](https://en.wikipedia.org/wiki/IEE
 ## KDB
 
 > **NOTE:** KDB was not tested.  Information was obtained via AI search.
+
+> :warning: **WARNING:** KDB does not support IEE754 `-NaN`.  All NaNs are treated as positive.
 
 1. NaN values are equal to each other.
 2. Nulls and NaNs are equal.

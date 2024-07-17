@@ -26,4 +26,6 @@ os.system("pip install tabulate")
 
 print(df.to_markdown(index=False))
 
-s = t.sort("v1")
+sdata = new_table([string_col("s1", values)]).update("v1=Double.parseDouble(s1)")
+sa = sdata.sort("v1")
+sd = sdata.sort_descending("v1")
