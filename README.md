@@ -207,6 +207,8 @@ several important reasons:
 
 ## Deephaven
 
+> **NOTE:** Version 0.34.3 was used for Deephaven.
+
 > :warning: **WARNING:** The Deephaven UI seems to be strange with how it displays zeros.  Both plus and 
 > minus zero are represented as `-0.0`.  Note the comparison results in this screenshot.
 > ![Deephaven](assets/deephaven_ui_zeros.png)
