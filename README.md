@@ -47,8 +47,8 @@ Look at numerical comparisons in different languages so that they can be compare
 
 ## Python
 
-| lang | v1 | v2 | == | != | > | >= | < | <= | hashCode== |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| lang   | v1 | v2 | == | != | > | >= | < | <= | hashCode== |
+|--- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Python | -0.0 | -0.0 | True | False | False | True | False | True | True |
 | Python | -0.0 | 0.0 | True | False | False | True | False | True | False |
 | Python | -0.0 | math.nan | False | True | False | False | False | False | False |

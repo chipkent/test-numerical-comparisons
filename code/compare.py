@@ -28,7 +28,7 @@ header = '| ' + ' | '.join(['lang', 'v1', 'v2'] + operations) + ' |'
 print(header)
 
 # Create the separator for the table header
-separator = '| ' + ' | '.join(['---'] * (len(operations) + 2)) + ' |'
+separator = '| ' + ' | '.join(['---'] * (len(operations) + 3)) + ' |'
 print(separator)
 
 # Create the table rows
