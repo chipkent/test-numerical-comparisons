@@ -17,7 +17,7 @@ Notes:
 
 ## Java
 
-> :warning: **WARNING:** Java does not support IEE754 `-NaN`.
+> :warning: **WARNING:** Java does not support IEE754 `-NaN`.  All NaNs are treated as positive.
 
 | lang | v1 | v2 | == | != | > | >= | < | <= | hashCode== | 
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -99,4 +99,48 @@ Notes:
 | Python | -math.inf | math.inf | False | True | False | False | True | True | False |
 | Python | -math.inf | -math.inf | True | False | False | True | False | True | True |
 
+# Deephaven
+
+> :warning: **WARNING:** The Deephaven UI seems to be strange with how it displays zeros.  Both plus and 
+> minus zero are represented as `-0.0`.  Note the comparison results in this screenshot.
+> ![Deephaven](assets/deephaven_ui_zeros.png)
+
+|   v1 |   v2 | Eq    | Ne    | Gt    | Ge    | Lt    | Le    | Hc    |
+|-----:|-----:|:------|:------|:------|:------|:------|:------|:------|
+|   -0 |   -0 | True  | False | False | True  | False | True  | True  |
+|   -0 |    0 | True  | False | False | False | True  | True  | False |
+|   -0 |  nan | False | True  | False | False | True  | True  | False |
+|   -0 |  nan | False | True  | False | False | True  | True  | False |
+|   -0 |  inf | False | True  | False | False | True  | True  | False |
+|   -0 | -inf | False | True  | True  | True  | False | False | False |
+|    0 |   -0 | True  | False | True  | True  | False | False | False |
+|    0 |    0 | True  | False | False | True  | False | True  | True  |
+|    0 |  nan | False | True  | False | False | True  | True  | False |
+|    0 |  nan | False | True  | False | False | True  | True  | False |
+|    0 |  inf | False | True  | False | False | True  | True  | False |
+|    0 | -inf | False | True  | True  | True  | False | False | False |
+|  nan |   -0 | False | True  | True  | True  | False | False | False |
+|  nan |    0 | False | True  | True  | True  | False | False | False |
+|  nan |  nan | False | True  | False | True  | False | True  | True  |
+|  nan |  nan | False | True  | False | True  | False | True  | True  |
+|  nan |  inf | False | True  | True  | True  | False | False | False |
+|  nan | -inf | False | True  | True  | True  | False | False | False |
+|  nan |   -0 | False | True  | True  | True  | False | False | False |
+|  nan |    0 | False | True  | True  | True  | False | False | False |
+|  nan |  nan | False | True  | False | True  | False | True  | True  |
+|  nan |  nan | False | True  | False | True  | False | True  | True  |
+|  nan |  inf | False | True  | True  | True  | False | False | False |
+|  nan | -inf | False | True  | True  | True  | False | False | False |
+|  inf |   -0 | False | True  | True  | True  | False | False | False |
+|  inf |    0 | False | True  | True  | True  | False | False | False |
+|  inf |  nan | False | True  | False | False | True  | True  | False |
+|  inf |  nan | False | True  | False | False | True  | True  | False |
+|  inf |  inf | True  | False | False | True  | False | True  | True  |
+|  inf | -inf | False | True  | True  | True  | False | False | False |
+| -inf |   -0 | False | True  | False | False | True  | True  | False |
+| -inf |    0 | False | True  | False | False | True  | True  | False |
+| -inf |  nan | False | True  | False | False | True  | True  | False |
+| -inf |  nan | False | True  | False | False | True  | True  | False |
+| -inf |  inf | False | True  | False | False | True  | True  | False |
+| -inf | -inf | True  | False | False | True  | False | True  | True  |
 
