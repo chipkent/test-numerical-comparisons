@@ -144,3 +144,10 @@ Notes:
 | -inf |  inf | False | True  | False | False | True  | True  | False |
 | -inf | -inf | True  | False | False | True  | False | True  | True  |
 
+# KDB
+
+> **NOTE:** KDB was not tested.  Information was obtained via AI search.
+
+1. NaN values are equal to each other.
+2. Nulls and NaNs are equal.
+3. Any non-null value is considered greater than a null or NaN.
